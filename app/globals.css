@@ -26,6 +26,7 @@
   --color-tbh-cream:  #F2DFC0;
 
   --font-display: 'TuoiTre', serif;
+  --font-sans: var(--font-dm-sans), sans-serif;
 }
 
 * {
@@ -39,5 +40,5 @@ html {
 body {
   background-color: var(--color-tbh-black);
   color: var(--color-tbh-cream);
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
 }

@@ -38,7 +38,7 @@ export function Nav() {
             <li key={href}>
               <Link
                 href={href}
-                className={`text-sm tracking-widest uppercase transition-colors ${
+                className={`font-display text-sm tracking-widest uppercase transition-colors ${
                   pathname === href ? 'text-tbh-honey' : 'text-tbh-tan hover:text-tbh-cream'
                 }`}
               >
@@ -69,7 +69,7 @@ export function Nav() {
                 <Link
                   href={href}
                   onClick={() => setOpen(false)}
-                  className={`block px-6 py-3 text-sm tracking-widest uppercase transition-colors ${
+                  className={`font-display block px-6 py-3 text-sm tracking-widest uppercase transition-colors ${
                     pathname === href ? 'text-tbh-honey' : 'text-tbh-tan hover:text-tbh-cream'
                   }`}
                 >

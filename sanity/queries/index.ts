@@ -80,7 +80,7 @@ export type MerchItem = {
 
 // ─── Queries ──────────────────────────────────────────────────────────────────
 
-const IMAGE_FIELDS = `"url": asset->url`
+const IMAGE_FIELDS = `asset->{ url }`
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function q<T>(query: string, tags: string[], fallback: T): Promise<T> {

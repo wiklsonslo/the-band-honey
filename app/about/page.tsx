@@ -39,7 +39,7 @@ export default async function AboutPage() {
           )}
         </div>
 
-        <div className="relative aspect-square overflow-hidden">
+        <div className="relative aspect-square overflow-hidden rounded-2xl">
           <Image src={bandPhotoUrl} alt="The Band Honey" fill className="object-cover" />
         </div>
       </div>
@@ -60,7 +60,7 @@ export default async function AboutPage() {
                   </div>
                   <div>
                     <p className="font-display text-tbh-black text-3xl uppercase">{member.name}</p>
-                    <p className="text-tbh-dark text-sm tracking-widest uppercase mt-1">{member.role}</p>
+                    <p className="text-tbh-dark text-sm lowercase mt-1">{member.role}</p>
                   </div>
                 </div>
               ) : (
@@ -68,7 +68,7 @@ export default async function AboutPage() {
                 <div className="flex items-center justify-between gap-8">
                   <div>
                     <p className="font-display text-tbh-black text-3xl uppercase">{member.name}</p>
-                    <p className="text-tbh-dark text-sm tracking-widest uppercase mt-1">{member.role}</p>
+                    <p className="text-tbh-dark text-sm lowercase mt-1">{member.role}</p>
                   </div>
                   <div className="relative w-40 h-40 rounded-2xl overflow-hidden shrink-0">
                     <Image src={photoUrl} alt={member.name} fill className="object-cover" />

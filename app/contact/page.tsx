@@ -45,7 +45,7 @@ export default function ContactPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-tbh-dark text-xs tracking-widest uppercase mb-1.5">
+                <label htmlFor="name" className="block text-tbh-dark text-xs lowercase mb-1.5">
                   Name
                 </label>
                 <input
@@ -58,7 +58,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-tbh-dark text-xs tracking-widest uppercase mb-1.5">
+                <label htmlFor="email" className="block text-tbh-dark text-xs lowercase mb-1.5">
                   Email
                 </label>
                 <input
@@ -71,7 +71,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-tbh-dark text-xs tracking-widest uppercase mb-1.5">
+                <label htmlFor="message" className="block text-tbh-dark text-xs lowercase mb-1.5">
                   Message
                 </label>
                 <textarea

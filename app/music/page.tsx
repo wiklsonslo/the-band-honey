@@ -8,7 +8,7 @@ function SpotifyEmbed({ track }: { track: Track }) {
     <div className="py-4 border-b border-tbh-dark last:border-0">
       <p className="font-display text-tbh-cream mb-3">{track.title}</p>
       {track.release && (
-        <p className="text-tbh-tan text-xs tracking-widest uppercase mb-3">
+        <p className="text-tbh-tan text-xs lowercase mb-3">
           {track.release.title}
         </p>
       )}

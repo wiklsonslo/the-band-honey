@@ -12,13 +12,13 @@ function ShowRow({ show }: { show: Show }) {
         <span className="font-display text-tbh-black text-lg uppercase shrink-0">
           {date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
         </span>
-        <span className="text-tbh-dark text-sm tracking-widest uppercase truncate">
+        <span className="text-tbh-dark text-sm lowercase truncate">
           {show.venue}{show.city ? `, ${show.city}` : ''}
         </span>
       </div>
 
       {show.soldOut ? (
-        <span className="text-tbh-dark text-xs tracking-widest uppercase shrink-0">Sold Out</span>
+        <span className="text-tbh-dark text-xs lowercase shrink-0">Sold Out</span>
       ) : show.ticketUrl ? (
         <a
           href={show.ticketUrl}
@@ -65,7 +65,7 @@ export default async function ShowsPage() {
               <div key={i} className="flex items-center justify-between bg-tbh-tan/40 rounded-full px-8 py-5 gap-4">
                 <div className="flex items-baseline gap-4">
                   <span className="font-display text-tbh-black text-lg uppercase">Date</span>
-                  <span className="text-tbh-dark text-sm tracking-widest uppercase">Location</span>
+                  <span className="text-tbh-dark text-sm">Location</span>
                 </div>
                 <span className="px-5 py-1.5 rounded-full bg-tbh-brown/40 text-tbh-dark text-xs tracking-widest uppercase">Tickets</span>
               </div>

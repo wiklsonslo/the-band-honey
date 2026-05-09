@@ -35,7 +35,7 @@ export function Footer({ settings }: Props) {
                 href={url ?? '#'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-tbh-tan hover:text-tbh-cream text-xs tracking-widest uppercase transition-colors"
+                className="text-tbh-tan hover:text-tbh-cream text-xs lowercase transition-colors"
               >
                 {label}
               </a>
@@ -43,6 +43,16 @@ export function Footer({ settings }: Props) {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="border-t border-tbh-brown/30 py-4 text-center">
+        <a
+          href="https://rootrsoftware.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-tbh-brown text-xs lowercase hover:text-tbh-tan transition-colors"
+        >
+          Developed by Rootr Software
+        </a>
       </div>
     </footer>
   )

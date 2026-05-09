@@ -23,13 +23,13 @@ export function UpcomingShows({ shows }: Props) {
                   <span className="font-display text-tbh-black text-lg uppercase shrink-0">
                     {date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   </span>
-                  <span className="text-tbh-dark text-sm tracking-widest uppercase truncate">
+                  <span className="text-tbh-dark text-sm lowercase truncate">
                     {show.venue}{show.city ? `, ${show.city}` : ''}
                   </span>
                 </div>
 
                 {show.soldOut ? (
-                  <span className="text-tbh-dark text-xs tracking-widest uppercase shrink-0">
+                  <span className="text-tbh-dark text-xs lowercase shrink-0">
                     Sold Out
                   </span>
                 ) : show.ticketUrl ? (
@@ -63,7 +63,7 @@ export function UpcomingShows({ shows }: Props) {
 
       {shows?.length > 0 && (
         <div className="text-center mt-8">
-          <Link href="/shows" className="text-tbh-dark text-xs tracking-widest uppercase hover:text-tbh-black transition-colors">
+          <Link href="/shows" className="text-tbh-dark text-xs lowercase hover:text-tbh-black transition-colors">
             All Shows →
           </Link>
         </div>

@@ -45,7 +45,7 @@ export function NewReleases({ releases }: Props) {
       </div>
 
       <div className="text-center mt-8">
-        <Link href="/music" className="text-tbh-dark text-xs tracking-widest uppercase hover:text-tbh-black transition-colors">
+        <Link href="/music" className="text-tbh-dark text-xs lowercase hover:text-tbh-black transition-colors">
           All Music →
         </Link>
       </div>
