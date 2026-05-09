@@ -29,7 +29,6 @@ export const release = defineType({
       name: 'releaseDate',
       title: 'Release Date',
       type: 'date',
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'artwork',
