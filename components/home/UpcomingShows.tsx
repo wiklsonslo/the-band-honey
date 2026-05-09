@@ -10,14 +10,14 @@ export function UpcomingShows({ shows }: Props) {
         Upcoming Shows
       </h2>
 
-      <div className="max-w-3xl mx-auto space-y-3">
+      <div className="max-w-5xl mx-auto space-y-3">
         {shows?.length ? (
           shows.map((show) => {
             const date = new Date(show.date)
             return (
               <div
                 key={show._id}
-                className="flex items-center justify-between bg-tbh-tan/50 rounded-full px-6 py-4 gap-4"
+                className="flex items-center justify-between bg-tbh-tan/50 rounded-full px-8 py-5 gap-4"
               >
                 <div className="flex items-baseline gap-4 min-w-0">
                   <span className="font-display text-tbh-black text-lg uppercase shrink-0">
@@ -48,7 +48,7 @@ export function UpcomingShows({ shows }: Props) {
         ) : (
           /* Placeholder rows matching wireframe */
           Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="flex items-center justify-between bg-tbh-tan/50 rounded-full px-6 py-4 gap-4">
+            <div key={i} className="flex items-center justify-between bg-tbh-tan/50 rounded-full px-8 py-5 gap-4">
               <div className="flex items-baseline gap-4">
                 <span className="font-display text-tbh-black text-lg uppercase">Date</span>
                 <span className="text-tbh-dark text-sm tracking-widest uppercase">Location</span>

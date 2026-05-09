@@ -21,12 +21,12 @@ export default async function Home() {
       {/* Mid-page full-width band photo */}
       <div className="relative h-72 md:h-96 w-full">
         <Image
-          src="/images/jaminthestreets1.jpg"
+          src="/images/stairpic.jpg"
           alt="The Band Honey"
           fill
-          className="object-cover object-center"
+          className="object-cover object-[center_42%]"
         />
-        <div className="absolute inset-0 bg-tbh-black/30" />
+        <div className="absolute inset-0 bg-tbh-black/20" />
       </div>
 
       <NewReleases releases={releases} />

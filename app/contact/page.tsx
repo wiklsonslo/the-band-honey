@@ -27,10 +27,10 @@ export default function ContactPage() {
       {/* Hero image — top half */}
       <div className="relative h-64 md:h-[45vh] w-full">
         <Image
-          src="/images/jaminthestreets1.jpg"
+          src="/images/couchpic.jpg"
           alt="Contact"
           fill
-          className="object-cover object-center"
+          className="object-cover object-[center_15%]"
         />
         <div className="absolute inset-0 bg-tbh-black/30" />
       </div>

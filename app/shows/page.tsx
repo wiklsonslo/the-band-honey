@@ -7,7 +7,7 @@ export const revalidate = 60
 function ShowRow({ show }: { show: Show }) {
   const date = new Date(show.date)
   return (
-    <div className="flex items-center justify-between bg-tbh-tan/40 rounded-full px-6 py-4 gap-4">
+    <div className="flex items-center justify-between bg-tbh-tan/40 rounded-full px-8 py-5 gap-4">
       <div className="flex items-baseline gap-4 min-w-0">
         <span className="font-display text-tbh-black text-lg uppercase shrink-0">
           {date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -44,10 +44,10 @@ export default async function ShowsPage() {
       {/* Hero image with SHOWS title */}
       <div className="relative h-72 md:h-[50vh] w-full flex items-end">
         <Image
-          src="/images/stagepic.jpg"
+          src="/images/jaminthestreets5.jpg"
           alt="Shows"
           fill
-          className="object-cover object-center"
+          className="object-cover object-bottom"
         />
         <div className="absolute inset-0 bg-tbh-black/40" />
         <h1 className="relative z-10 font-display text-6xl md:text-8xl text-tbh-cream uppercase px-8 pb-8">
@@ -57,12 +57,12 @@ export default async function ShowsPage() {
 
       {/* Show list */}
       <div className="bg-tbh-cream min-h-screen py-12 px-6">
-        <div className="max-w-3xl mx-auto space-y-3">
+        <div className="max-w-5xl mx-auto space-y-3">
           {upcoming.length > 0 ? (
             upcoming.map((show) => <ShowRow key={show._id} show={show} />)
           ) : (
             Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="flex items-center justify-between bg-tbh-tan/40 rounded-full px-6 py-4 gap-4">
+              <div key={i} className="flex items-center justify-between bg-tbh-tan/40 rounded-full px-8 py-5 gap-4">
                 <div className="flex items-baseline gap-4">
                   <span className="font-display text-tbh-black text-lg uppercase">Date</span>
                   <span className="text-tbh-dark text-sm tracking-widest uppercase">Location</span>
