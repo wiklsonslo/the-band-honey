@@ -177,7 +177,7 @@ export async function getDemosPassword(): Promise<string> {
     const result = await (client.fetch as any)(
       `*[_type == "siteSettings"][0].demosPassword`,
       {},
-      { cache: 'no-store' }
+      { next: { revalidate: 0 } }
     )
     return (result as string) ?? ''
   } catch {

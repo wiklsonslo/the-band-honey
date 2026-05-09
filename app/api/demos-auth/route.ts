@@ -9,6 +9,8 @@ export async function POST(request: Request) {
   }
 
   const correctPassword = await getDemosPassword()
+  console.log('[demos-auth] fetched password:', JSON.stringify(correctPassword))
+  console.log('[demos-auth] submitted password:', JSON.stringify(password))
 
   if (!correctPassword || password !== correctPassword) {
     return NextResponse.json({ error: 'Incorrect password' }, { status: 401 })
