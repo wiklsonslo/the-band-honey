@@ -82,103 +82,105 @@ export type MerchItem = {
 
 const IMAGE_FIELDS = `"url": asset->url`
 
-export async function getSiteSettings(): Promise<SiteSettings> {
-  return client.fetch(
-    `*[_type == "siteSettings"][0]{
-      bandName, bookingEmail, contactEmail, socialLinks, footerText
-    }`,
-    {},
-    { next: { tags: ['siteSettings'] } }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function q<T>(query: string, tags: string[], fallback: T): Promise<T> {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client.fetch as any)(query, {}, { next: { tags } })
+    return (result ?? fallback) as T
+  } catch {
+    return fallback
+  }
+}
+
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  return q(
+    `*[_type == "siteSettings"][0]{ bandName, bookingEmail, contactEmail, socialLinks, footerText }`,
+    ['siteSettings'],
+    null
   )
 }
 
 export async function getFeaturedShows(): Promise<Show[]> {
-  return client.fetch(
+  return q(
     `*[_type == "show" && isFeatured == true && date >= now()] | order(date asc)[0...4]{
       _id, venue, city, date, ticketUrl, isFeatured, soldOut
     }`,
-    {},
-    { next: { tags: ['show'] } }
+    ['show'],
+    []
   )
 }
 
 export async function getAllShows(): Promise<Show[]> {
-  return client.fetch(
-    `*[_type == "show"] | order(date asc){
-      _id, venue, city, date, ticketUrl, isFeatured, soldOut
-    }`,
-    {},
-    { next: { tags: ['show'] } }
+  return q(
+    `*[_type == "show"] | order(date asc){ _id, venue, city, date, ticketUrl, isFeatured, soldOut }`,
+    ['show'],
+    []
   )
 }
 
 export async function getFeaturedReleases(): Promise<Release[]> {
-  return client.fetch(
+  return q(
     `*[_type == "release" && isFeatured == true] | order(releaseDate desc)[0...4]{
-      _id, title, type, releaseDate,
-      artwork{ ${IMAGE_FIELDS} },
-      youtubeUrl, spotifyUrl, isFeatured
+      _id, title, type, releaseDate, artwork{ ${IMAGE_FIELDS} }, youtubeUrl, spotifyUrl, isFeatured
     }`,
-    {},
-    { next: { tags: ['release'] } }
+    ['release'],
+    []
   )
 }
 
 export async function getAllTracks(): Promise<Track[]> {
-  return client.fetch(
-    `*[_type == "track"] | order(order asc){
-      _id, title, release->{ title }, spotifyEmbedUrl, order
-    }`,
-    {},
-    { next: { tags: ['track'] } }
+  return q(
+    `*[_type == "track"] | order(order asc){ _id, title, release->{ title }, spotifyEmbedUrl, order }`,
+    ['track'],
+    []
   )
 }
 
 export async function getAllDemos(): Promise<Demo[]> {
-  return client.fetch(
-    `*[_type == "demo"] | order(order asc){
-      _id, title, description, spotifyEmbedUrl, order
-    }`,
-    {},
-    { next: { tags: ['demo'] } }
+  return q(
+    `*[_type == "demo"] | order(order asc){ _id, title, description, spotifyEmbedUrl, order }`,
+    ['demo'],
+    []
   )
 }
 
-export async function getAboutPage(): Promise<AboutPage> {
-  return client.fetch(
-    `*[_type == "aboutPage"][0]{
-      bio, bandPhoto{ ${IMAGE_FIELDS} }
-    }`,
-    {},
-    { next: { tags: ['aboutPage'] } }
+export async function getAboutPage(): Promise<AboutPage | null> {
+  return q(
+    `*[_type == "aboutPage"][0]{ bio, bandPhoto{ ${IMAGE_FIELDS} } }`,
+    ['aboutPage'],
+    null
   )
 }
 
 export async function getAllMembers(): Promise<Member[]> {
-  return client.fetch(
-    `*[_type == "member"] | order(order asc){
-      _id, name, role, photo{ ${IMAGE_FIELDS} }, order
-    }`,
-    {},
-    { next: { tags: ['member'] } }
+  return q(
+    `*[_type == "member"] | order(order asc){ _id, name, role, photo{ ${IMAGE_FIELDS} }, order }`,
+    ['member'],
+    []
   )
 }
 
 export async function getAllMerch(): Promise<MerchItem[]> {
-  return client.fetch(
+  return q(
     `*[_type == "merchItem" && isAvailable == true] | order(order asc){
       _id, title, image{ ${IMAGE_FIELDS} }, squareUrl, isAvailable, order
     }`,
-    {},
-    { next: { tags: ['merchItem'] } }
+    ['merchItem'],
+    []
   )
 }
 
 export async function getDemosPassword(): Promise<string> {
-  const result = await client.fetch(
-    `*[_type == "siteSettings"][0].demosPassword`,
-    {},
-    { cache: 'no-store' }
-  )
-  return result ?? ''
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = await (client.fetch as any)(
+      `*[_type == "siteSettings"][0].demosPassword`,
+      {},
+      { cache: 'no-store' }
+    )
+    return (result as string) ?? ''
+  } catch {
+    return ''
+  }
 }

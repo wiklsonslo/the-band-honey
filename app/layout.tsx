@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
-import { getSiteSettings } from '@/sanity/queries'
+import { getSiteSettings, type SiteSettings } from '@/sanity/queries'
 
 export const metadata: Metadata = {
   title: 'The Band Honey',
@@ -14,7 +14,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const settings = await getSiteSettings()
+  const settings = await getSiteSettings() ?? {} as SiteSettings
 
   return (
     <html lang="en">

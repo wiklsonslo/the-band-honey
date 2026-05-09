@@ -8,7 +8,7 @@ export const revalidate = 60
 
 export default async function Home() {
   const [settings, shows, releases] = await Promise.all([
-    getSiteSettings(),
+    getSiteSettings().then((s) => s ?? undefined),
     getFeaturedShows(),
     getFeaturedReleases(),
   ])
