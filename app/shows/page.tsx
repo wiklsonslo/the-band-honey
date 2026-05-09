@@ -56,7 +56,7 @@ export default async function ShowsPage() {
       </div>
 
       {/* Show list */}
-      <div className="bg-tbh-cream min-h-screen py-12 px-6">
+      <div className="bg-tbh-cream py-16 px-6">
         <div className="max-w-5xl mx-auto space-y-3">
           {upcoming.length > 0 ? (
             upcoming.map((show) => <ShowRow key={show._id} show={show} />)

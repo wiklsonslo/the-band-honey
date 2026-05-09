@@ -1,10 +1,12 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
 const links = [
+  { href: '/music', label: 'Music' },
   { href: '/merch', label: 'Merch' },
   { href: '/shows', label: 'Shows' },
   { href: '/about', label: 'About' },
@@ -19,11 +21,15 @@ export function Nav() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-tbh-black/80 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-14">
         {/* Logo pill */}
-        <Link
-          href="/"
-          className="px-4 py-1.5 rounded-full bg-tbh-dark border border-tbh-brown text-tbh-cream font-display text-sm tracking-widest uppercase hover:bg-tbh-brown transition-colors"
-        >
-          TBH
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/logo.png"
+            alt="The Band Honey"
+            width={48}
+            height={48}
+            className="object-contain"
+            style={{ filter: 'invert(1) contrast(5)', mixBlendMode: 'screen' }}
+          />
         </Link>
 
         {/* Desktop links */}
