@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'TuoiTre';
+  src: url('/fonts/FFF_tuoi-tre-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TuoiTre';
+  src: url('/fonts/FFF_tuoi-tre-Text.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-tbh-black:  #1E1410;
+  --color-tbh-dark:   #3D1A08;
+  --color-tbh-rust:   #7A2E0E;
+  --color-tbh-brown:  #9C6035;
+  --color-tbh-honey:  #C9884E;
+  --color-tbh-tan:    #DEB98A;
+  --color-tbh-cream:  #F2DFC0;
+
+  --font-display: 'TuoiTre', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-tbh-black);
+  color: var(--color-tbh-cream);
+  font-family: var(--font-display);
+}
