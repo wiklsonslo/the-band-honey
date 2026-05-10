@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
+import posthog from 'posthog-js'
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
@@ -10,16 +11,22 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('sending')
     const formData = new FormData(e.currentTarget)
+    const name = formData.get('name') as string
+    const email = formData.get('email') as string
+    const message = formData.get('message') as string
     const res = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: formData.get('name'),
-        email: formData.get('email'),
-        message: formData.get('message'),
-      }),
+      body: JSON.stringify({ name, email, message }),
     })
-    setStatus(res.ok ? 'sent' : 'error')
+    if (res.ok) {
+      posthog.identify(email, { name, email })
+      posthog.capture('contact_form_submitted', { name, email })
+      setStatus('sent')
+    } else {
+      posthog.capture('contact_form_error', { name, email })
+      setStatus('error')
+    }
   }
 
   return (

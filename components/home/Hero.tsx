@@ -1,5 +1,8 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import posthog from 'posthog-js'
 import type { SiteSettings } from '@/sanity/queries'
 
 type Props = { settings?: SiteSettings }
@@ -45,12 +48,14 @@ export function Hero({ settings }: Props) {
         <div className="flex gap-4 mt-2">
           <Link
             href="/shows"
+            onClick={() => posthog.capture('hero_shows_clicked')}
             className="px-8 py-2.5 rounded-full border border-tbh-cream text-tbh-cream text-sm tracking-widest uppercase hover:bg-tbh-cream hover:text-tbh-black transition-colors font-display"
           >
             Shows
           </Link>
           <a
             href={bookingEmail ? `mailto:${bookingEmail}` : '/contact'}
+            onClick={() => posthog.capture('hero_book_clicked', { booking_email: !!bookingEmail })}
             className="px-8 py-2.5 rounded-full border border-tbh-cream text-tbh-cream text-sm tracking-widest uppercase hover:bg-tbh-cream hover:text-tbh-black transition-colors font-display"
           >
             Book
@@ -66,6 +71,7 @@ export function Hero({ settings }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
+                onClick={() => posthog.capture('social_link_clicked', { platform: label })}
                 className="text-tbh-cream/70 hover:text-tbh-cream transition-colors"
               >
                 {icon}

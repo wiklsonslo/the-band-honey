@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getDemosPassword } from '@/sanity/queries'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export async function POST(request: Request) {
   const { password } = await request.json()
@@ -15,6 +16,13 @@ export async function POST(request: Request) {
   if (!correctPassword || password !== correctPassword) {
     return NextResponse.json({ error: 'Incorrect password' }, { status: 401 })
   }
+
+  const posthog = getPostHogClient()
+  posthog.capture({
+    distinctId: 'anonymous',
+    event: 'demos_auth_success',
+  })
+  await posthog.shutdown()
 
   const response = NextResponse.json({ success: true })
   response.cookies.set('demos_auth', correctPassword, {

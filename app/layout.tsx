@@ -4,6 +4,7 @@ import './globals.css'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { getSiteSettings, type SiteSettings } from '@/sanity/queries'
+import { PostHogProvider } from '@/components/PostHogProvider'
 
 const jost = Jost({ subsets: ['latin'], variable: '--font-dm-sans' })
 
@@ -22,9 +23,11 @@ export default async function RootLayout({
   return (
     <html lang="en" className={jost.variable}>
       <body className="min-h-screen flex flex-col">
-        <Nav />
-        <main className="flex-1 pt-16">{children}</main>
-        <Footer settings={settings} />
+        <PostHogProvider>
+          <Nav />
+          <main className="flex-1 pt-16">{children}</main>
+          <Footer settings={settings} />
+        </PostHogProvider>
       </body>
     </html>
   )

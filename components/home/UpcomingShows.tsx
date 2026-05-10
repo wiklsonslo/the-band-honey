@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import posthog from 'posthog-js'
 import type { Show } from '@/sanity/queries'
 
 type Props = { shows: Show[] }
@@ -37,6 +40,15 @@ export function UpcomingShows({ shows }: Props) {
                     href={show.ticketUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      posthog.capture('ticket_link_clicked', {
+                        venue: show.venue,
+                        city: show.city,
+                        date: show.date,
+                        ticket_url: show.ticketUrl,
+                        source: 'homepage',
+                      })
+                    }
                     className="shrink-0 px-5 py-1.5 rounded-full bg-tbh-brown text-tbh-cream text-xs tracking-widest uppercase hover:bg-tbh-rust transition-colors"
                   >
                     Tickets
@@ -63,7 +75,11 @@ export function UpcomingShows({ shows }: Props) {
 
       {shows?.length > 0 && (
         <div className="text-center mt-8">
-          <Link href="/shows" className="text-tbh-dark text-xs lowercase hover:text-tbh-black transition-colors">
+          <Link
+            href="/shows"
+            onClick={() => posthog.capture('all_shows_link_clicked')}
+            className="text-tbh-dark text-xs lowercase hover:text-tbh-black transition-colors"
+          >
             All Shows →
           </Link>
         </div>

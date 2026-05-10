@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import posthog from 'posthog-js'
 
 export default function DemosLoginPage() {
   const router = useRouter()
@@ -14,6 +15,8 @@ export default function DemosLoginPage() {
     setLoading(true)
     setError('')
 
+    posthog.capture('demos_login_attempted')
+
     const res = await fetch('/api/demos-auth', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -23,6 +26,7 @@ export default function DemosLoginPage() {
     if (res.ok) {
       router.push('/demos')
     } else {
+      posthog.capture('demos_login_failed')
       setError('Incorrect password.')
       setLoading(false)
     }

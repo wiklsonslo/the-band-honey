@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { getPostHogClient } from '@/lib/posthog-server'
 
 export async function POST(request: Request) {
   const { name, email, message } = await request.json()
@@ -29,6 +30,14 @@ export async function POST(request: Request) {
     text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
     html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p>${message.replace(/\n/g, '<br>')}</p>`,
   })
+
+  const posthog = getPostHogClient()
+  posthog.capture({
+    distinctId: email,
+    event: 'contact_email_sent',
+    properties: { name, email },
+  })
+  await posthog.shutdown()
 
   return NextResponse.json({ success: true })
 }

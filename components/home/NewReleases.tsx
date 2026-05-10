@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import posthog from 'posthog-js'
 import type { Release } from '@/sanity/queries'
 
 type Props = { releases: Release[] }
@@ -45,7 +48,11 @@ export function NewReleases({ releases }: Props) {
       </div>
 
       <div className="text-center mt-8">
-        <Link href="/music" className="text-tbh-dark text-xs lowercase hover:text-tbh-black transition-colors">
+        <Link
+          href="/music"
+          onClick={() => posthog.capture('all_music_link_clicked')}
+          className="text-tbh-dark text-xs lowercase hover:text-tbh-black transition-colors"
+        >
           All Music →
         </Link>
       </div>
