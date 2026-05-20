@@ -58,18 +58,9 @@ export function UpcomingShows({ shows }: Props) {
             )
           })
         ) : (
-          /* Placeholder rows matching wireframe */
-          Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="flex items-center justify-between bg-tbh-tan/50 rounded-full px-8 py-5 gap-4">
-              <div className="flex items-baseline gap-4">
-                <span className="font-display text-tbh-black text-lg uppercase">Date</span>
-                <span className="text-tbh-dark text-sm tracking-widest uppercase">Location</span>
-              </div>
-              <span className="px-5 py-1.5 rounded-full bg-tbh-brown/40 text-tbh-dark text-xs tracking-widest uppercase">
-                Tickets
-              </span>
-            </div>
-          ))
+          <p className="text-center text-tbh-dark lowercase py-6">
+            no upcoming shows — check back soon
+          </p>
         )}
       </div>
 

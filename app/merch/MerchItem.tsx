@@ -29,7 +29,7 @@ export function MerchItem({ item }: { item: SanityMerchItem }) {
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </div>
-      <p className="font-display text-tbh-black uppercase text-sm mt-2 tracking-wide">
+      <p className="text-tbh-black text-sm mt-2 lowercase">
         {item.title}
       </p>
     </a>
