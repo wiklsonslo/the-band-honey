@@ -18,10 +18,10 @@ export const demo = defineType({
       rows: 3,
     }),
     defineField({
-      name: 'spotifyEmbedUrl',
-      title: 'Spotify Embed URL',
+      name: 'url',
+      title: 'Link',
       type: 'url',
-      description: 'Paste the Spotify embed URL for this demo track',
+      description: 'Link to the demo (SoundCloud, Google Drive, Dropbox, YouTube, etc.)',
     }),
     defineField({
       name: 'order',

@@ -52,7 +52,7 @@ export type Demo = {
   _id: string
   title: string
   description?: string
-  spotifyEmbedUrl?: string
+  url?: string
   order: number
 }
 
@@ -139,7 +139,7 @@ export async function getAllTracks(): Promise<Track[]> {
 
 export async function getAllDemos(): Promise<Demo[]> {
   return q(
-    `*[_type == "demo"] | order(order asc){ _id, title, description, spotifyEmbedUrl, order }`,
+    `*[_type == "demo"] | order(order asc){ _id, title, description, url, order }`,
     ['demo'],
     []
   )
