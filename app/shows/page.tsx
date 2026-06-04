@@ -41,7 +41,7 @@ export default async function ShowsPage() {
             <div className="pt-10">
               <p className="font-display text-tbh-brown text-xs tracking-widest uppercase mb-4">Past Shows</p>
               <div className="space-y-3 opacity-50">
-                {past.reverse().map((show) => <ShowRow key={show._id} show={show} />)}
+                {[...past].reverse().map((show) => <ShowRow key={show._id} show={show} />)}
               </div>
             </div>
           )}

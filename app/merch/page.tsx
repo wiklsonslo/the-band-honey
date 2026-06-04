@@ -21,7 +21,7 @@ export default async function MerchPage() {
       <div className="max-w-3xl mx-auto">
         <h1 className="font-display text-5xl md:text-6xl text-tbh-black uppercase mb-10">Merch</h1>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
           {display.map((item) => (
             <MerchItem key={item._id} item={item} />
           ))}
