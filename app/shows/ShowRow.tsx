@@ -7,11 +7,11 @@ export function ShowRow({ show }: { show: Show }) {
   const date = new Date(show.date)
   return (
     <div className="flex items-center justify-between bg-tbh-tan/40 rounded-full px-8 py-5 gap-4">
-      <div className="flex items-baseline gap-4 min-w-0">
+      <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 min-w-0">
         <span className="font-display text-tbh-black text-lg uppercase shrink-0">
           {date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
         </span>
-        <span className="text-tbh-dark text-sm lowercase truncate">
+        <span className="text-tbh-dark text-sm lowercase">
           {show.venue}{show.city ? `, ${show.city}` : ''}
         </span>
       </div>

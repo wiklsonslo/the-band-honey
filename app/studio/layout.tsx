@@ -3,5 +3,5 @@ export default function StudioLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return <div className="-mt-16 h-screen">{children}</div>
 }

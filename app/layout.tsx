@@ -8,6 +8,8 @@ import { PostHogProvider } from '@/components/PostHogProvider'
 
 const jost = Jost({ subsets: ['latin'], variable: '--font-dm-sans' })
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'The Band Honey',
   description: 'The official website of The Band Honey',
@@ -22,6 +24,14 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={jost.variable}>
+      <head>
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://open.spotify.com" />
+        <link rel="dns-prefetch" href="https://www.youtube.com" />
+        <link rel="dns-prefetch" href="https://i.ytimg.com" />
+        <link rel="dns-prefetch" href="https://open.spotify.com" />
+      </head>
       <body className="min-h-screen flex flex-col">
         <PostHogProvider>
           <Nav />
