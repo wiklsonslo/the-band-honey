@@ -12,7 +12,19 @@ export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'The Band Honey',
-  description: 'The official website of The Band Honey',
+  description: 'The Band Honey — indie/rock band from Athens, GA. Shows, music, and merch.',
+  openGraph: {
+    title: 'The Band Honey',
+    description: 'The Band Honey — indie/rock band from Athens, GA. Shows, music, and merch.',
+    images: ['/opengraph-image.png'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Band Honey',
+    description: 'The Band Honey — indie/rock band from Athens, GA. Shows, music, and merch.',
+    images: ['/opengraph-image.png'],
+  },
 }
 
 export default async function RootLayout({
